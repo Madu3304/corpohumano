@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import './App.css'
 import { Header } from './components/Header'
 import { Conteudo } from './components/Conteudo'
+import { Contato } from './components/Contato'
 import { Footer } from './components/Footer'
 import { RainBackground } from './components/RainBackground'
 import type { TouristSpot } from './components/TouristCard'
@@ -34,18 +36,24 @@ const touristSpots: TouristSpot[] = [
 ]
 
 function App() {
+  const [pagina, setPagina] = useState<'inicio' | 'contato'>('inicio')
+
   return (
     <div className="app-container">
-      {/* Componente extra: Chuva animada em segundo plano */}
       <RainBackground />
 
-      {/* 1. Componente: Header */}
-      <Header />
+      <Header
+        abaAtual={pagina}
+        onExibirInicio={() => setPagina('inicio')}
+        onExibirContato={() => setPagina('contato')}
+      />
 
-      {/* 2. Componente: Conteúdo */}
-      <Conteudo spots={touristSpots} />
+      {pagina === 'inicio' ? (
+        <Conteudo spots={touristSpots} />
+      ) : (
+        <Contato />
+      )}
 
-      {/* 3. Componente: Footer */}
       <Footer />
     </div>
   )
