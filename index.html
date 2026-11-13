@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Por dentro de Joinville 🌧️</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌧️</text></svg>">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eaf2fb 0%, #f4edf7 35%, #ebf6f0 70%, #fbf3e8 100%);
+      color: #2d3748;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Emojis de chuva caindo no fundo */
+    .rain-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .rain-drop {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      opacity: 0.6;
+      animation: fallDown linear infinite;
+    }
+
+    @keyframes fallDown {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.7;
+      }
+
+      80% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(105vh);
+        opacity: 0;
+      }
+    }
+
+    /* 1. HEADER */
+    .header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px 20px 24px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+      margin-bottom: 32px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: #475569;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-info {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-info h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .card-rain {
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 28px;
+      }
+
+      .card-image {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="rain-layer" aria-hidden="true">
+    <span class="rain-drop" style="left: 6%; animation-delay: 0s; animation-duration: 5.5s;">🌧️</span>
+    <span class="rain-drop" style="left: 16%; animation-delay: 2.1s; animation-duration: 6.2s;">💧</span>
+    <span class="rain-drop" style="left: 27%; animation-delay: 0.8s; animation-duration: 5s;">☔</span>
+    <span class="rain-drop" style="left: 38%; animation-delay: 3.2s; animation-duration: 7s;">🌦️</span>
+    <span class="rain-drop" style="left: 50%; animation-delay: 1.4s; animation-duration: 4.8s;">🌧️</span>
+    <span class="rain-drop" style="left: 62%; animation-delay: 2.8s; animation-duration: 6.5s;">💧</span>
+    <span class="rain-drop" style="left: 74%; animation-delay: 0.5s; animation-duration: 5.8s;">🌂</span>
+    <span class="rain-drop" style="left: 85%; animation-delay: 3.7s; animation-duration: 6s;">🌧️</span>
+    <span class="rain-drop" style="left: 94%; animation-delay: 1.9s; animation-duration: 5.2s;">☔</span>
+  </div>
+
+  <header class="header">
+    <h1>🌧️ Por dentro de Joinville 🌧️</h1>
+    <p>Pontos turísticos da Cidade da Chuva ☔ 💧 🌦️</p>
+  </header>
+
+  <main class="content">
+    <div class="grid">
+      <div class="card">
+        <img src="images/portico-moinho-aereo.webp" alt="Pórtico & Moinho da Expoville" class="card-image" />
+        <div class="card-info">
+          <h3>Pórtico & Moinho da Expoville</h3>
+          <span class="card-rain">🌧️ ☔</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/moinho-expoville.webp" alt="Moinho Típico da Expoville" class="card-image" />
+        <div class="card-info">
+          <h3>Moinho Típico da Expoville</h3>
+          <span class="card-rain">🌦️ 💧</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/museu-da-imigracao.webp" alt="Museu Nacional de Imigração e Colonização" class="card-image" />
+        <div class="card-info">
+          <h3>Museu Nacional de Imigração e Colonização</h3>
+          <span class="card-rain">🌧️ 🌂</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/centreventos-cau-hansen.webp" alt="Centreventos Cau Hansen" class="card-image" />
+        <div class="card-info">
+          <h3>Centreventos Cau Hansen</h3>
+          <span class="card-rain">🌧️ ☔</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/parque-da-cidade.webp" alt="Parque da Cidade" class="card-image" />
+        <div class="card-info">
+          <h3>Parque da Cidade</h3>
+          <span class="card-rain">🌦️ 💧 🌧️</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Por dentro de Joinville • 🌧️ ☔ 💧 🌦️ 🌂 🌧️</p>
+  </footer>
+</body>
+
+</html>
